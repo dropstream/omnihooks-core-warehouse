@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shipment>
+   <OrderNum>90350837</OrderNum>
+   <ReferenceNum>5196</ReferenceNum>
+   <ShipDate>20170503</ShipDate>
+   <ShipMethod>UP04</ShipMethod>
+   <OrderLines>
+      <OrderLine>
+         <Item>847860038626</Item>
+         <QuantityShipped>1</QuantityShipped>
+      </OrderLine>
+   </OrderLines>
+   <PackageDetails>
+      <PackageDetail>
+         <TrackingNumber>testshipment04281</TrackingNumber>
+         <Weight>6.2</Weight>
+      </PackageDetail>
+   </PackageDetails>
+</Shipment>
