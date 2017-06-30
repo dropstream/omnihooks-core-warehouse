@@ -24,15 +24,17 @@ Or install it yourself as:
 
 
 ````ruby
-Rack::Builder.new do
+app = Rack::Builder.new do
 	use OmniHooks::Builder do
-	  provider :core_warehouse do
-	  	configure do |c|
+	  provider :core_warehouse do |p|
+	  	p.configure do |c|
 	  	  c.subscribe 'Shipment', Proc.new { |event| nil }
 	  	end
 	  end
 	end
 end
+
+run app
 ````
 
 The Strategy will expect a query parameter `owner` as part of the HTTP request.
@@ -46,7 +48,7 @@ The Strategy will expect a query parameter `owner` as part of the HTTP request.
 ````ruby
 {
 	owner: "foo bar", 
-	event: {"Shipment"=>{"OrderNum"=>"90350837","ReferenceNum"=>"5196","ShipDate"=>"20170503","ShipMethod"=>"UP04","OrderLines"=>{"OrderLine"=>{"Item"=>"847860038626", "QuantityShipped"=>"1"}},"PackageDetails"=>{"PackageDetail"=>{"TrackingNumber"=>"testshipment04281", "Weight"=>"6.2"}}}}
+	event: "<?xml version="1.0" encoding="UTF-8"?> <Shipment> <OrderNum>90350837</OrderNum> <ReferenceNum>5196</ReferenceNum> <ShipDate>20170503</ShipDate> <ShipMethod>UP04</ShipMethod> <OrderLines> <OrderLine> <Item>847860038626</Item> <QuantityShipped>1</QuantityShipped> </OrderLine> </OrderLines> <PackageDetails> <PackageDetail> <TrackingNumber>testshipment04281</TrackingNumber> <Weight>6.2</Weight> </PackageDetail> </PackageDetails> </Shipment>"
 }
 ````
 

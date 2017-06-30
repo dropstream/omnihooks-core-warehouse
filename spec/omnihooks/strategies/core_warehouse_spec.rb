@@ -53,7 +53,7 @@ RSpec.describe OmniHooks::Strategies::CoreWarehouse do
 
     context 'with a matched event' do
       it 'should pass the event to the subscriber' do
-        expect(subscriber).to receive(:call).with({owner: "foo bar", event: {"Shipment"=>{"OrderNum"=>"90350837","ReferenceNum"=>"5196","ShipDate"=>"20170503","ShipMethod"=>"UP04","OrderLines"=>{"OrderLine"=>{"Item"=>"847860038626", "QuantityShipped"=>"1"}},"PackageDetails"=>{"PackageDetail"=>{"TrackingNumber"=>"testshipment04281", "Weight"=>"6.2"}}}}})
+        expect(subscriber).to receive(:call).with({owner: "foo bar", event: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Shipment>\n   <OrderNum>90350837</OrderNum>\n   <ReferenceNum>5196</ReferenceNum>\n   <ShipDate>20170503</ShipDate>\n   <ShipMethod>UP04</ShipMethod>\n   <OrderLines>\n      <OrderLine>\n         <Item>847860038626</Item>\n         <QuantityShipped>1</QuantityShipped>\n      </OrderLine>\n   </OrderLines>\n   <PackageDetails>\n      <PackageDetail>\n         <TrackingNumber>testshipment04281</TrackingNumber>\n         <Weight>6.2</Weight>\n      </PackageDetail>\n   </PackageDetails>\n</Shipment>"})
 
         strategy.call(make_env('/hooks/core-warehouse', fixture('single_line_item_single_tracking_number')))
       end
